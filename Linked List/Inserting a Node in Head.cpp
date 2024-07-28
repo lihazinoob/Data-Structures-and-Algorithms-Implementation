@@ -43,6 +43,7 @@ int main()
 {
   Node* headnode = new Node(100);
   InsertAtHead(200,headnode);
+  InsertAtHead(300,headnode);
   printingLinkedList(headnode);
 
 }
