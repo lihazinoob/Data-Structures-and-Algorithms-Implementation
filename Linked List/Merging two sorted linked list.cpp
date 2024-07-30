@@ -46,6 +46,19 @@ void TraversingLinkedList(Node* &head)
   }
 
 }
+void printingLinkedList(Node* &head)
+{
+  Node* temp = head;
+  while(temp != NULL)
+  {
+    cout<<temp->data<<endl;
+    cout<<temp->nextpointer<<endl;
+    // container.push_back(temp->data);
+    temp = temp->nextpointer;
+
+  }
+
+}
 
 int main()
 {
@@ -100,12 +113,24 @@ int main()
   TraversingLinkedList(headnode2);
   // printingLinkedList(headnode2);
   
-  sort(container.begin(),container.end());
 
-  for(auto x:container)
+
+  sort(container.begin(),container.end());
+  Node* sortedhead;
+  Node* sortedtail;
+  for(int i = 0;i<(n1+n2);i++)
   {
-    cout<<x<<endl;
+    if(i == 0)
+    {
+      sortedhead = new Node(container[i]);
+      sortedtail = sortedhead;
+    }
+    else
+    {
+      InsertAtTail(container[i],sortedtail);
+    }
   }
+  printingLinkedList(sortedhead);
 
 
 }
