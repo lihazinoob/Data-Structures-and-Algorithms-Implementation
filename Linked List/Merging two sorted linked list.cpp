@@ -5,7 +5,7 @@
 
 #include <bits/stdc++.h>
 using namespace std;
-
+vector<int>container;
 
 class Node
 {
@@ -35,12 +35,13 @@ void InsertAtTail(int data, Node* &tailNode)
 
 }
 
-void printingLinkedList(Node* &head)
+void TraversingLinkedList(Node* &head)
 {
   Node* temp = head;
   while(temp != NULL)
   {
-    cout<<temp->data<<endl;
+    // cout<<temp->data<<endl;
+    container.push_back(temp->data);
     temp = temp->nextpointer;
   }
 
@@ -70,7 +71,8 @@ int main()
       InsertAtTail(data,tailnode1);
     }
   }
-  printingLinkedList(headnode1);
+  TraversingLinkedList(headnode1);
+  // printingLinkedList(headnode1);
 
   // For the insertion of second linked list.
 
@@ -88,14 +90,22 @@ int main()
     if(i == 0)
     {
        headnode2 = new Node(data);
-       tailnode2 = headnode1;
+       tailnode2 = headnode2;
     }
     else
     {
       InsertAtTail(data,tailnode2);
     }
   }
-  printingLinkedList(headnode2);
+  TraversingLinkedList(headnode2);
+  // printingLinkedList(headnode2);
+  
+  sort(container.begin(),container.end());
+
+  for(auto x:container)
+  {
+    cout<<x<<endl;
+  }
 
 
 }
