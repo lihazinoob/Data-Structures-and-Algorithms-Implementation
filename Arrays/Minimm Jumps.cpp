@@ -8,45 +8,40 @@ class Solution
 public:
   int minJumps(int arr[], int n)
   {
-    if (arr[0] == 0)
+    int ans = 0;
+    // find max of maxi , i+arr[i]
+    int i = 0;
+    int j = 0;
+    if (n == 1)
     {
-      return -1;
+      return 0;
     }
-    int traversingpointer = 0;
-    int memorypointer = 0;
-    int count = 0;
-    while (true)
+    while (i < n)
     {
-      if (traversingpointer < n)
+      int maxi = 0;
+      int maxval = 0;
+      int last = arr[i] + i;
+      int idx = -1;
+      if (last >= n - 1)
       {
-        memorypointer = traversingpointer;
-        traversingpointer += arr[traversingpointer];
-        int reversertraversepointer = traversingpointer;
-        while (true)
+        ans++;
+        return ans;
+      }
+      //  find maximum [i......j] -> jump = arr[i]+i at any ith index
+      while (j <= last)
+      {
+        maxval = max(maxval, arr[j]);
+        if (maxi < arr[j] + j)
         {
-          if (reversertraversepointer > memorypointer)
-          {
-            if (arr[reversertraversepointer] == 0)
-            {
-              reversertraversepointer--;
-              continue;
-            }
-            else
-            {
-              ++count;
-              break;
-            }
-          }
-          else
-          {
-            return -1;
-          }
+          maxi = arr[j] + j;
+          idx = j;
         }
+        j++;
       }
-      else
-      {
-        return count;
-      }
+      if (maxval == 0)
+        return -1;
+      ans++;
+      i = idx;
     }
   }
 };
@@ -61,6 +56,6 @@ int main()
     cin >> arr[i];
   }
   Solution s;
-  cout<<s.minJumps(arr, n);
+  cout << s.minJumps(arr, n);
   return 0;
 }
